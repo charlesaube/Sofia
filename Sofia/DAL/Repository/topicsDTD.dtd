@@ -1,0 +1,12 @@
+<!Element topics (topic+)>
+<!Element topic (description, concept+)>
+<!ATTLIST topic 
+    topicId CDATA #REQUIRED
+    label CDATA #REQUIRED>
+<!Element description (#PCDATA)>
+<!Element concept (desc)>
+<!ATTLIST concept 
+    conceptId CDATA #REQUIRED
+    creatorId CDATA #REQUIRED
+    name CDATA #REQUIRED>
+<!Element desc (#PCDATA)>

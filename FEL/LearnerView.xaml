@@ -1,0 +1,135 @@
+﻿<Page x:Class="FEL.LearnerView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FEL"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LearnerView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.7*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="20,0,0,0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <Label Content="Connected User:" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                <Label Name="connectedUser" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="LoadUser" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <StackPanel>
+                    <Label Content="Topic " FontSize="20"/>
+                    <ComboBox Name="TopicList" Loaded="TopicList_Loaded" SelectionChanged="ChangeConceptList" MinWidth="100"/>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Concept List" FontSize="20"/>
+                    <ComboBox Name="ConceptList" MinWidth="100"/>
+                </StackPanel>
+                
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Label Content="Offer filter: " FontSize="20"/>
+                <ComboBox Name="FilterChoice" FontSize="20">
+                    <ComboBoxItem IsSelected="True" Content="Expertise"/>
+                    <ComboBoxItem Content="Rate"/>
+                    <ComboBoxItem Content="Likes"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <Label Content="Scope" FontSize="20"/>
+                <RadioButton Name="PraticeRadioButton" IsChecked="True" Content="Practice" Click="Practice_Clicked" FontSize="20"/>
+                <RadioButton Name="TheoryRadioButton" Content="Theory" Click="Theory_Clicked" FontSize="20"/>
+                <RadioButton Name="PracticeandTheoryRadioButton" Content="Pratice and Theory" Click="PracticeandTheory_Clicked" FontSize="20"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="20,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,30" >
+                <Label Content="Duration (minutes): " VerticalAlignment="Center" FontSize="20"/>
+                <ComboBox Name="DurationComboBox" VerticalAlignment="Center" FontSize="20">
+                    <ComboBoxItem Content="15"/>
+                    <ComboBoxItem IsSelected="True"  Content="30"/>
+                    <ComboBoxItem Content="45"/>
+                    <ComboBoxItem Content="60"/>
+                    <ComboBoxItem Content="75"/>
+                    <ComboBoxItem Content="90"/>
+                    <ComboBoxItem Content="105"/>
+                    <ComboBoxItem Content="120"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Background level: " VerticalAlignment="Center" FontSize="20"/>
+                <ComboBox Name="BackgroundComboBox" VerticalAlignment="Center" FontSize="20">
+                    <ComboBoxItem IsSelected="True"  Content="Beginner"/>
+                    <ComboBoxItem Content="Intermediate"/>
+                    <ComboBoxItem Content="Expert"/>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+            
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="20,0,0,0">
+            <DataGrid Name="TimeSlotDataGrid"  Height="100" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left" Margin="0,0,0,10
+                      " >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="FromDataColumn"  Header="From" Width="*" Binding="{Binding from}"/>
+                    <DataGridTextColumn x:Name="ToDataColumn"  Header="To" Width="*" Binding="{Binding to}"/>
+                    <DataGridTextColumn x:Name="DateDataColumn" Header="Date" Width="2*" Binding="{Binding date}"/>
+
+                </DataGrid.Columns>
+                
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Calendar Name="DatePicker" HorizontalAlignment="Left" VerticalAlignment="Top" SelectedDatesChanged="ChangeSelectDate"/>
+                <StackPanel>
+                    <StackPanel  Orientation="Horizontal">
+                        <Label Content="Date: " FontSize="20"/>
+                        <TextBox IsReadOnly="True" Name="DateTextBox"  Width="100" FontSize="18"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,15,0,0"  Orientation="Horizontal">
+                        <Label Content="From: " FontSize="20"/>
+                        <TextBox Name="FromTextBox" Width="100" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <Label Content="To:      " FontSize="20"/>
+                        <TextBox Name="ToTextBox" Width="100" FontSize="20"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button  Margin="10" Name="TimeSlotButton" Content="Add time slot" Click="TimeSlotButton_Click"/>
+                        <Button IsEnabled="False" Margin="10"  Name="RemoveTimeSlotButton" Content="Remove time slot" Click="RemoveTimeSlotButton_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <Button IsEnabled="False" Name="SubmitRequest" Content="Submit request"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="36" Click="SubmitRequest_Click" Margin="50,0,0,0"/>
+            <Label Name="EndMessage" VerticalAlignment="Top" Margin="50,0,0,0"/>
+        </StackPanel>
+        
+        <Popup Placement="Center" IsOpen="False" Name="SubmitPopUp" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" Height="200">
+            <Grid Background="#FFFDFDFD">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" Background="#FFCBC3BF"/>
+                <Label Grid.Row="1" Content="Request Succesfuly submited!" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,50" FontSize="18"/>
+                <Button Grid.Row="1" Content="OK" VerticalAlignment="Bottom" MinWidth="100" FontSize="20" Margin="50,0,50,30" Click="PopUp_Click" Background="#FFE37272"/>
+            </Grid>
+
+        </Popup>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF5EAEA" Offset="0.526"/>
+                <GradientStop Color="#FFE37272" Offset="0.994"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+    </Grid>
+</Page>

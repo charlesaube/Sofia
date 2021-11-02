@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE topics SYSTEM "topicsDTD.dtd">
+<topics>
+  <topic topicId="1" label="Programming">
+    <description>Tout sur la création de programme/application</description>
+    <concept conceptId="1" creatorId="1" name="C#">
+      <desc>Programmation en C#</desc>
+    </concept>
+    <concept conceptId="2" creatorId="1" name="Java">
+      <desc>Programmation en Java</desc>
+    </concept>
+  </topic>
+  <topic topicId="2" label="Database">
+    <description>Tout sur la création et gestion de bases de données</description>
+    <concept conceptId="3" creatorId="2" name="SQL">
+      <desc>Bases de données SQL Server</desc>
+    </concept>
+    <concept conceptId="4" creatorId="2" name="XML">
+      <desc>Bases de données XML</desc>
+    </concept>
+  </topic >
+</topics> 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
